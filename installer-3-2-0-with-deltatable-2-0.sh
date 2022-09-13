@@ -24,7 +24,6 @@ INSTALL_DIRECTORY=$(pwd)
 INSTALL_BIN_SPARK="https://archive.apache.org/dist/spark/${SPARK}/${SPARK}-${HADOOP_VERSION}.tgz"
 
 sudo rm -rf /opt/apache-spark-${SPARK:6:6}
-# sudo rm -rf /usr/share/applications/jupyterlab.desktop
 sudo rm -rf /usr/local/spark-${SPARK:6:6}
 sudo mkdir -p /opt/apache-spark-${SPARK:6:6}/src
 
@@ -134,6 +133,6 @@ apache-spark-${SPARK:6:6}-${HADOOP_VERSION}
 jupyter-notebook-$(jupyter-notebook --version)
 
 **** observação ****
-procure no menu de programas pelo aplicativo Jupyter Laboratory na categoria programming
+procure no menu de programas pelo aplicativo Jupyter Notebook na categoria de programas
 ************************************************************************************************************************************************************************************************
 """
