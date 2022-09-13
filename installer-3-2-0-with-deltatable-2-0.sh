@@ -42,7 +42,6 @@ if [ ${USER_DIST} = fedora ] || [ ${USER_DIST} = centos ]; then
     sudo pip3 uninstall spylon-kernel -y
     sudo pip3 uninstall -y pyspark
     sudo yum remove python3-nbformat==5.1.3
-#    sudo pip3 uninstall jupyterlab -y
     sudo yum update -y
     sudo yum install java-11-openjdk-devel -y
     sudo yum install java-1.8.0-openjdk-devel -y
@@ -50,19 +49,17 @@ if [ ${USER_DIST} = fedora ] || [ ${USER_DIST} = centos ]; then
     sudo pip3 install spylon-kernel
     sudo python3 -m spylon_kernel install
     sudo yum install jupyter-notebook -y
-#    sudo pip3 install jupyterlab==${JUPYTER_LAB_VERSION}
     sudo pip3 install pyspark==${SPARK:6:6}
     sudo pip3 install delta-spark==2.0.0
     sudo pip3 install koalas
     sudo pip3 install sparksql-magic
     sudo yum install xdg-utils -y
-elif [ ${USER_DIST} = ubuntu ] || [ ${USER_DIST} = linuxmint ]; then
+elif [ ${USER_DIST} = ubuntu ] || [ ${USER_DIST} = linuxmint ] || [ ${USER_DIST} = pop ]; then
     sudo apt install python3-pip -y
     sudo apt remove jupyter-notebook -y
     sudo pip3 uninstall spylon-kernel -y
     sudo pip3 uninstall -y pyspark
-    sudo yum remove python3-nbformat==5.1.3
-#    sudo pip3 uninstall jupyterlab -y
+    sudo apt remove python3-nbformat==5.1.3
     sudo apt update -y
     sudo apt install default-jre -y
     sudo apt install openjdk-8-jdk -y    
@@ -71,7 +68,6 @@ elif [ ${USER_DIST} = ubuntu ] || [ ${USER_DIST} = linuxmint ]; then
     sudo python3 -m spylon_kernel install
     sudo pip3 install terminado --user --ignore-installed
     sudo apt install jupyter-notebook -y
-#    sudo pip3 install jupyterlab==${JUPYTER_LAB_VERSION}
     sudo pip3 install pyspark==${SPARK:6:6}
     sudo pip3 install delta-spark==2.0.0
     sudo pip3 install koalas
@@ -127,20 +123,6 @@ EOF
 
 sudo cp /tmp/kernel.json /usr/local/share/jupyter/kernels/spylon-kernel
 sudo rm -rf /tmp/kernel.json
-
-
-#cat << EOF > ${USER_HOME}/jupyterlab.desktop
-#[Desktop Entry]
-#Name=Jupyterlab
-#Exec=jupyter-notebook
-#Icon=/opt/apache-spark-${SPARK:6:6}/src/jupyterlab.png
-#Type=Application
-#Categories=Development;
-#NoDisplay=false
-#EOF
-
-#sudo cp ${USER_HOME}/jupyterlab.desktop /usr/share/applications
-#rm -rf ${USER_HOME}/jupyterlab.desktop
 
 sleep 5
 
